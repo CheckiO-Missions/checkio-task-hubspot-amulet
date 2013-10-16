@@ -1,29 +1,47 @@
 <p>
-    <i>( Describe task in general )</i>
+    On the island Sophie found the interesting round amulet.
+    Along the perimeter of the amulet has a small points through each degree (total 360).
+    Also the amulet has three levers with different lengths
+    (first is the shortest, second is middle and third is the longest).
+    Levers can be rotated. If you rotate one lever, then rotate and others.
+    The levers rotate discretely by degrees. Clockwise direction is a positive angle. Counterclockwise is a negative.
 </p>
 
 <p>
-    Sum two passed ints
+    After some experiments Sophie discovers the levers correlation. If you rotate a lever, then other rotate in the same direction but with different speed.
+    If you rotate the first, then the second is rotated at the double angle, the third -- triple.
+    If you rotate the second, then the third is rotated at the double angle, the first -- triple.
+    If you rotate the third, then the first is rotated at the double angle, the second -- triple.
+    For example: You rotate the first lever at +10 degrees, then the second is rotated at +20 degrees and the third at +30 degrees.
+</p>
+
+<p>
+    You can rotate the levers from -180 to +180 degrees only (but in interrelated mode it can be rotated at more than 360).
+    You can rotate each lever once in the next order: the first, the second, the third.
+    Sophie used the X-ray and found out what position it should be. After these rotations the levers must be at <strong>0, 225, 315</strong>.
+
+</p>
+
+<p>
+    You are given a start position as three integers -- first, second, third.
+    You should return a list of three integers -- the angles for each lever.
 </p>
 
 <p style="text-align: center;">
-    <img class="for_info_only" title="example" src="{{MEDIA}}example.png" alt="example" width="392px"/>
-    <img class="for_editor_only" title="example" src="{{MEDIA}}example.png" alt="example" width="380px"/>
-</p>
-
-<p><i>( Explain input and output values )</i></p>
-<p>
-    <strong>Input: </strong> Two arguments. Both are int
+    <img class="for_info_only" title="amulet" src="{{MEDIA}}amulet.png" alt="amulet" width="600px"/>
+    <img class="for_editor_only" title="amulet" src="{{MEDIA}}amulet.png" alt="amulet" width="380px"/>
 </p>
 
 <p>
-    <strong>Output: </strong> Int. 
+    <strong>Input: </strong> Start position, three arguments, integers.
 </p>
 
+<p>
+    <strong>Output: </strong> The angles, a list of integers.
+</p>
 
 
 <div class="for_info_only">
-    <p><i>( Put some usage examples )</i></p>
     <p>
         <strong>Example:</strong>
     </p>
@@ -35,5 +53,4 @@ checkio(5, 7) == 12
 
 <p class="for_info_only">
     <strong>How it is used: </strong>
-    <i>(Here you can explain how it can be used in development and what is usage of this.)</i>
 </p>
