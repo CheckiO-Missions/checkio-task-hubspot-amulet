@@ -7,9 +7,9 @@ from tests import TESTS
 
 def checker(data, result):
     if not isinstance(result, (list, tuple)) or len(result) != 3 or not all(isinstance(el, int) for el in result):
-        return False, "You should return a list with three integers"
+        return False, (False, "You should return a list with three integers")
     if not all(-180 <= el <= 180 for el in result):
-        return False, "The angles must be in range from -180 to 180 inclusively."
+        return False, (False, "The angles must be in range from -180 to 180 inclusively.")
     f, s, t = result
     temp = data[:]
     temp[0] += f
@@ -23,9 +23,9 @@ def checker(data, result):
     temp[2] += t
     temp = [n % 360 for n in temp]
     if temp == [0, 225, 315]:
-        return True, "All right!"
+        return True, (True, "All right!")
     else:
-        return False, "Wrong position."
+        return False, (True, "Wrong position.")
 
 api.add_listener(
     ON_CONNECT,

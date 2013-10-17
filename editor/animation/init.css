@@ -58,6 +58,10 @@
     border-color: #de0202;
 }
 
+.animation-content .explanation svg {
+    padding: 20px;
+}
+
 .tryit-content {
     background-color: #dfe8f7;
     font-family: verdana;
