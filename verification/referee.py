@@ -5,6 +5,7 @@ from checkio.referees import cover_codes
 
 from tests import TESTS
 
+
 def checker(data, result):
     if not isinstance(result, (list, tuple)) or len(result) != 3 or not all(isinstance(el, int) for el in result):
         return False, (False, "You should return a list with three integers")
@@ -13,19 +14,20 @@ def checker(data, result):
     f, s, t = result
     temp = data[:]
     temp[0] += f
-    temp[1] += 2*f
-    temp[2] += 3 *f
-    temp[0] += 3*s
+    temp[1] += 2 * f
+    temp[2] += 3 * f
+    temp[0] += 3 * s
     temp[1] += s
-    temp[2] += 2*s
-    temp[0] += 2*t
-    temp[1] += 3*t
+    temp[2] += 2 * s
+    temp[0] += 2 * t
+    temp[1] += 3 * t
     temp[2] += t
     temp = [n % 360 for n in temp]
     if temp == [0, 225, 315]:
         return True, (True, "All right!")
     else:
-        return False, (True, "Wrong position.")
+        return False, (True, "This is the wrong final position {0}.".format(temp))
+
 
 api.add_listener(
     ON_CONNECT,

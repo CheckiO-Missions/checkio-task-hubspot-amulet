@@ -66,7 +66,7 @@ requirejs(['ext_editor_1', 'jquery_190', 'raphael_210'],
 
             if (!result) {
                 $content.find('.call').html('Fail: checkio(' + JSON.stringify(checkioInput) + ')');
-                $content.find('.answer').html('Right result:&nbsp;' + JSON.stringify(rightResult));
+                $content.find('.answer').html(result_addon[1]);
                 $content.find('.answer').addClass('error');
                 $content.find('.output').addClass('error');
                 $content.find('.call').addClass('error');
@@ -80,8 +80,8 @@ requirejs(['ext_editor_1', 'jquery_190', 'raphael_210'],
             var canvas = new AmuletCanvas($content.find(".explanation")[0]);
             canvas.createCanvas(checkioInput);
 
-            if (result_addon[1]) {
-                canvas.animateCanvas(userResult, result_addon[0]);
+            if (result_addon[0]) {
+                canvas.animateCanvas(userResult, result);
             }
 
 
@@ -158,7 +158,12 @@ requirejs(['ext_editor_1', 'jquery_190', 'raphael_210'],
             };
 
             this.animateCanvas = function(userAngles, recolor) {
-                var delay = 20;
+//                Number.prototype.mod = function(n) {
+//                    return ((this%n)+n)%n;
+//                };
+
+
+                var delay = 15;
 
                 var i = 0;
 
@@ -166,15 +171,17 @@ requirejs(['ext_editor_1', 'jquery_190', 'raphael_210'],
 
                 var anglesSign = [angles[0] / userAngles[0], angles[1] / userAngles[1], angles[2] / userAngles[2]];
 
-                (function rotating() {
+                function rotating() {
                     if (angles[i] <= 0) {
                         i++;
                         if (i >= 3) {
                             if (recolor) {
-                                for (var x = 0; x < 3; x++) {
-                                  levers[x].animate({"stroke": colorOrange4, "fill": colorOrange4}, 200);
-                                }
-                                mainCircle.animate({"stroke": colorOrange4}, 200);
+                                levers.animate({"stroke": colorOrange1, "fill": colorOrange1}, 200);
+                                mainCircle.animate({"stroke": colorOrange1}, 200,
+                                    callback=function(){
+                                        levers.animate({"stroke": colorOrange4, "fill": colorOrange4}, 200);
+                                        mainCircle.animate({"stroke": colorOrange4}, 200);
+                                    });
                             }
                             return false;
                         }
@@ -186,12 +193,14 @@ requirejs(['ext_editor_1', 'jquery_190', 'raphael_210'],
                     var j = (i + 1) % 3,
                         k = (i + 2) % 3;
 
-//                    for (var x = 0; x < 3; x++) {
-//                        if (levers[x].angle === etalon[x] || 360 - levers[x].angle === etalon[x]) {
-//                            levers[x].attr({"stroke": colorOrange4, "fill": colorOrange4});
+//                    for (var l = 0; l < 3; l++) {
+//                        var an = ((levers[l].angle % 360) + 360) % 360;
+//                        if (an === etalon[l]) {
+//                            console.log(l);
+//                            levers[l].animate({"stroke": colorOrange4, "fill": colorOrange4}, 50);
 //                        }
 //                        else {
-//                            levers[x].attr({"stroke": colorBlue2, "fill": colorBlue2});
+//                            levers[l].animate({"stroke": colorBlue2, "fill": colorBlue2}, 50);
 //                        }
 //                    }
 
@@ -204,7 +213,8 @@ requirejs(['ext_editor_1', 'jquery_190', 'raphael_210'],
                     levers[k].animate({"transform": format("r{0},{1},{1}", levers[k].angle, cx)}, delay);
                     levers[i].animate({"transform": format("r{0},{1},{1}", levers[i].angle, cx)}, delay,
                         callback=rotating);
-                })();
+                }
+                setTimeout(rotating, 500);
 
             }
 

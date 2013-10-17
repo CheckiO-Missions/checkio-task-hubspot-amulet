@@ -9,16 +9,42 @@ Each test is dict with
 
 
 TESTS = {
-    "Basics": [
+    "1. Basics": [
         {
-            "input": [90, 0, 180],
-            "answer": [90, 0, 180]
+            "input": [90, 0, 180]
         },
-    ],
-    "Extra": [
         {
-            "input": [90, 0, 180],
-            "answer": [90, 0, 180]
+            "input": [0, 0, 0]
+        },
+        {
+            "input": [0, 90, 180]
+        },
+        {
+            "input": [10, 20, 30]
+        },
+        {
+            "input": [30, 60, 90]
+        },
+
+    ],
+    "2. Extra": [
+        {
+            "input": [11, 22, 33]
+        },
+        {
+            "input": [30, 60, 90]
+        },
+        {
+            "input": [180, 90, 270]
+        },
+        {
+            "input": [100, 200, 300]
         }
+
+
     ]
 }
+
+for cat in TESTS.keys():
+    for t in TESTS[cat]:
+        t["answer"] = t["input"]
