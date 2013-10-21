@@ -1,7 +1,13 @@
-def checkio(first, second, third):
+def checkio(matrix):
     return [0, 0, 0]
 
 #These "asserts" using only for self-checking and not necessary for auto-testing
 if __name__ == '__main__':
-    print(checkio(90, 0, 180))
-    print(checkio(0, 0, 0))
+    print(checkio([
+        [1, 2, 3],
+        [3, 1, 2],
+        [2, 3, 1]]))
+    print(checkio([
+        [1, 1, 1],
+        [1, 1, 1],
+        [1, 1, 1]]))
