@@ -1,7 +1,6 @@
 from checkio.signals import ON_CONNECT
 from checkio import api
 from checkio.referees.io import CheckiOReferee
-from checkio.referees import cover_codes
 
 from tests import TESTS
 
@@ -19,7 +18,7 @@ def checker(matrix, result):
 
     temp[0] += matrix[1][0] * s
     temp[1] += s
-    temp[2] += matrix[1][3] * s
+    temp[2] += matrix[1][2] * s
 
     temp[0] += matrix[2][0] * t
     temp[1] += matrix[2][1] * t
