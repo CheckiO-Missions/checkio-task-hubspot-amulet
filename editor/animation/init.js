@@ -65,23 +65,23 @@ requirejs(['ext_editor_1', 'jquery_190', 'raphael_210'],
             $content.find('.output').html('&nbsp;Your result:&nbsp;' + JSON.stringify(userResult));
 
             if (!result) {
-                $content.find('.call').html('Fail: checkio(' + checkioInput[0] + "," + checkioInput[1] + "," + checkioInput[2] + "," + ')');
+                $content.find('.call').html('Fail: checkio(' + JSON.stringify(checkioInput) + ')');
                 $content.find('.answer').html(result_addon[1]);
                 $content.find('.answer').addClass('error');
                 $content.find('.output').addClass('error');
                 $content.find('.call').addClass('error');
             }
             else {
-                $content.find('.call').html('Pass: checkio(' + checkioInput[0] + "," + checkioInput[1] + "," + checkioInput[2] + "," + ')');
+                $content.find('.call').html('Pass: checkio(' + JSON.stringify(checkioInput) + ')');
                 $content.find('.answer').remove();
             }
             //Dont change the code before it
 
             var canvas = new AmuletCanvas($content.find(".explanation")[0]);
-            canvas.createCanvas(checkioInput);
+            canvas.createCanvas([0, 0, 0]);
 
             if (result_addon[0]) {
-                canvas.animateCanvas(userResult, result);
+                canvas.animateCanvas(checkioInput, userResult, result);
             }
 
 
@@ -157,7 +157,7 @@ requirejs(['ext_editor_1', 'jquery_190', 'raphael_210'],
 
             };
 
-            this.animateCanvas = function(userAngles, recolor) {
+            this.animateCanvas = function(matrix, userAngles, recolor) {
 //                Number.prototype.mod = function(n) {
 //                    return ((this%n)+n)%n;
 //                };
@@ -206,8 +206,8 @@ requirejs(['ext_editor_1', 'jquery_190', 'raphael_210'],
 
                     var sign = anglesSign[i];
                     levers[i].angle += sign;
-                    levers[j].angle += 2 * sign;
-                    levers[k].angle += 3 * sign;
+                    levers[j].angle += matrix[i][j] * sign;
+                    levers[k].angle += matrix[i][k] * sign;
                     angles[i] -= 1;
                     levers[j].animate({"transform": format("r{0},{1},{1}", levers[j].angle, cx)}, delay);
                     levers[k].animate({"transform": format("r{0},{1},{1}", levers[k].angle, cx)}, delay);
