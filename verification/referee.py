@@ -6,21 +6,23 @@ from checkio.referees import cover_codes
 from tests import TESTS
 
 
-def checker(data, result):
+def checker(matrix, result):
     if not isinstance(result, (list, tuple)) or len(result) != 3 or not all(isinstance(el, int) for el in result):
         return False, (False, "You should return a list with three integers")
     if not all(-180 <= el <= 180 for el in result):
         return False, (False, "The angles must be in range from -180 to 180 inclusively.")
     f, s, t = result
-    temp = data[:]
+    temp = [0, 0, 0]
     temp[0] += f
-    temp[1] += 2 * f
-    temp[2] += 3 * f
-    temp[0] += 3 * s
+    temp[1] += matrix[0][1] * f
+    temp[2] += matrix[0][2] * f
+
+    temp[0] += matrix[1][0] * s
     temp[1] += s
-    temp[2] += 2 * s
-    temp[0] += 2 * t
-    temp[1] += 3 * t
+    temp[2] += matrix[1][3] * s
+
+    temp[0] += matrix[2][0] * t
+    temp[1] += matrix[2][1] * t
     temp[2] += t
     temp = [n % 360 for n in temp]
     if temp == [0, 225, 315]:
@@ -33,8 +35,4 @@ api.add_listener(
     ON_CONNECT,
     CheckiOReferee(
         tests=TESTS,
-        cover_code={
-            'python-27': cover_codes.unwrap_args,  # or None
-            'python-3': cover_codes.unwrap_args
-        },
         checker=checker).on_ready)
