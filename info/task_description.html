@@ -1,3 +1,9 @@
+<style>
+    table.matrix {
+    border-left: solid; border-right: solid; font-weight: bold;
+    margin: 10px}
+
+</style>
 <p>
     On the island Sophie found the interesting round amulet.
     Along the perimeter of the amulet has a small points through each degree (total 360).
@@ -7,13 +13,59 @@
     The levers rotate discretely by degrees. Clockwise direction is a positive angle. Counterclockwise is a negative.
 </p>
 
-<p>
-    After some experiments Sophie discovers the levers correlation. If you rotate a lever, then other rotate in the same direction but with different speed.
-    If you rotate the first, then the second is rotated at the double angle, the third -- triple.
-    If you rotate the second, then the third is rotated at the double angle, the first -- triple.
-    If you rotate the third, then the first is rotated at the double angle, the second -- triple.
-    For example: You rotate the first lever at +10 degrees, then the second is rotated at +20 degrees and the third at +30 degrees.
-</p>
+<div>
+    After some experiments Sophie discovers the levers correlation. If you rotate a lever, then other rotate in the same direction but with different speed.<br>
+    If you rotate the first, then the second is rotated at the <strong>f<sub>2</sub></strong> time faster, the third -- at the <strong>f<sub>3</sub></strong>time faster.<br>
+    If you rotate the second, then the third is rotated at the <strong>s<sub>3</sub></strong> time faster, the first -- at the <strong>s<sub>1</sub></strong> time faster.<br>
+    If you rotate the third, then the first is rotated at the <strong>t<sub>1</sub></strong> time faster, the second -- at the <strong>t<sub>2</sub></strong> time faster.<br>
+    This correlation can be represented as a matrix 3x3 with <strong>1</strong> in the main diagonal.<br>
+    <table class="matrix">
+    <tr>
+        <td>1</td>
+        <td>f<sub>2</sub></td>
+        <td>f<sub>3</sub></td>
+    </tr>
+    <tr>
+        <td>s<sub>1</sub></td>
+        <td>1</td>
+        <td>s<sub>3</sub></td>
+    </tr>
+    <tr>
+        <td>t<sub>1</sub></td>
+        <td>t<sub>2</sub></td>
+        <td>1</td>
+    </tr>
+
+    </table>
+</div>
+
+<div>
+    For example, the rotating correlation is given as the matrix:
+    <table  class="matrix">
+    <tr>
+        <td>1</td>
+        <td>2</td>
+        <td>3</td>
+    </tr>
+    <tr>
+        <td>3</td>
+        <td>1</td>
+        <td>2</td>
+    </tr>
+    <tr>
+        <td>2</td>
+        <td>3</td>
+        <td>1</td>
+    </tr>
+
+    </table>
+    This mean that:<br>
+    If you rotate the first, the second is rotated at the double angle while the third rotates at triple.<br>
+    If you rotate the second, the third is rotated at the double angle, and the first rotates at triple.<br>
+    If you rotate the third, the first is rotated at the double angle, and the second rotates at triple.<br>
+    For example: You rotate the first lever at +10 degrees.
+    As a result, the second is rotated at +20 degrees and the third at +30 degrees.
+</div>
 
 <p>
     You can rotate the levers from -180 to +180 degrees only (but in interrelated mode it can be rotated at more than 360).
@@ -23,8 +75,9 @@
 </p>
 
 <p>
-    You are given a start position as three integers -- first, second, third.
+    You are given a rotation matrix as a list of lists with positive integers and the unitary main diagonal.
     You should return a list of three integers -- the angles for each lever.
+    The start position of the levers is [0, 0, 0].
 </p>
 
 <p style="text-align: center;">
@@ -33,7 +86,7 @@
 </p>
 
 <p>
-    <strong>Input: </strong> Start position, three arguments, integers.
+    <strong>Input: </strong> A rotation matrix, a list of lists.
 </p>
 
 <p>
