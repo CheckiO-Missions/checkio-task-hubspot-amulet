@@ -1,5 +1,7 @@
 {
     "expand_animation_results": true,
     "animation_panel_width": 400,
-    "console_height": 300
+    "tryit_results_height": 370,
+    "tryit_results_width": 500,
+    "console_height": 400
 }

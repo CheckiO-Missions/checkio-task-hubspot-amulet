@@ -71,6 +71,8 @@
     text-align: center;
     vertical-align: top;
     padding: 3px;
+    color: #294270;
+    font-family: Verdana;
 }
 
 /*it for firefox*/
@@ -163,5 +165,33 @@ fieldset[disabled] .btn {
     background-color: #eeeeee;
 }
 
-/* Your CSS */
-/*          */
+.tryit-content table .matrix-in {
+    border-collapse: collapse;
+    border: none;
+    margin: 5px auto 5px auto;
+}
+
+.tryit-content table .matrix-in td{
+    padding: 0px;
+}
+
+.tryit-content table .matrix-in input{
+    width: 32px;
+    padding: 1px;
+    text-align: center;
+
+}
+
+.tryit-content table .matrix-in input:disabled{
+    cursor: default;
+}
+
+
+
+.tryit-content .tryit-canvas {
+    /*width: 300px;*/
+    /*height: 300px;*/
+}
+.tryit-content .tryit-canvas svg{
+    padding: 20px;
+}
